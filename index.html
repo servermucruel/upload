@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GamesWTeam - Atualizações</title>
+
+<!-- Fontes do Google -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --primary: #00ff66;
+        --primary-dark: #00cc52;
+        --bg-primary: #0d0d0d;
+        --bg-secondary: #111111;
+        --bg-tertiary: #1a1a1a;
+        --text-primary: #f0f0f0;
+        --text-secondary: #b0b0b0;
+        --border-color: #2a2a2a;
+        --success: #00ff66;
+        --warning: #ffaa00;
+        --danger: #ff5555;
+        --info: #66ccff;
+        --radius: 12px;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        --transition: all 0.3s ease;
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+        min-height: 100vh;
+        padding: 20px;
+        background-image: 
+            radial-gradient(circle at 10% 20%, rgba(0, 255, 102, 0.05) 0%, transparent 20%),
+            radial-gradient(circle at 90% 80%, rgba(0, 255, 102, 0.05) 0%, transparent 20%);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+        text-align: center;
+        padding: 40px 0 30px;
+        margin-bottom: 40px;
+        position: relative;
+    }
+
+    header::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        border-radius: 3px;
+    }
+
+    .logo-container {
+        margin-bottom: 20px;
+        display: inline-block;
+        padding: 15px;
+    }
+
+    header img {
+        height: 80px;
+        filter: drop-shadow(0 0 8px rgba(0, 255, 102, 0.3));
+        transition: var(--transition);
+    }
+
+    header img:hover {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 12px rgba(0, 255, 102, 0.5));
+    }
+
+    h1 {
+        margin-top: 15px;
+        color: var(--primary);
+        font-size: 2.5rem;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        text-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+    }
+
+    .subtitle {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        margin-top: 8px;
+        font-weight: 300;
+    }
+
+    /* Stats Cards */
+    .stats-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-bottom: 40px;
+    }
+
+    .stat-card {
+        background: var(--bg-secondary);
+        padding: 25px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border-color);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--primary);
+    }
+
+    .stat-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(0, 255, 102, 0.3);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    }
+
+    .stat-title {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .stat-title i {
+        color: var(--primary);
+    }
+
+    .stat-value {
+        color: var(--primary);
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+        font-family: 'JetBrains Mono', monospace;
+    }
+
+    .stat-description {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-top: 8px;
+    }
+
+    /* Quality Indicator */
+    .quality-indicator {
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+        padding: 12px 15px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 8px;
+        border-left: 4px solid var(--primary);
+    }
+
+    .quality-text {
+        margin-left: 12px;
+    }
+
+    .quality-status {
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .quality-message {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-top: 3px;
+    }
+
+    /* Table Container */
+    .table-container {
+        background: var(--bg-secondary);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        border: 1px solid var(--border-color);
+        overflow: hidden;
+        margin-bottom: 40px;
+    }
+
+    .table-header {
+        padding: 25px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .table-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    thead {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    th {
+        padding: 18px 20px;
+        text-align: left;
+        font-weight: 600;
+        color: var(--text-secondary);
+        border-bottom: 1px solid var(--border-color);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    td {
+        padding: 18px 20px;
+        border-bottom: 1px solid var(--border-color);
+        color: var(--text-primary);
+    }
+
+    tbody tr {
+        transition: var(--transition);
+    }
+
+    tbody tr:hover {
+        background: rgba(0, 255, 102, 0.03);
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .file-name {
+        font-weight: 500;
+        color: var(--text-primary);
+        word-break: break-word;
+    }
+
+    .file-hash {
+        font-family: 'JetBrains Mono', monospace;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        word-break: break-all;
+    }
+
+    .file-size {
+        font-family: 'JetBrains Mono', monospace;
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+
+    /* Status colors for quality */
+    .status-excelente { color: var(--success); }
+    .status-regular { color: var(--info); }
+    .status-atencao { color: var(--warning); }
+    .status-ruim { color: #ff6b00; }
+    .status-pessimo { color: var(--danger); }
+
+    /* Loading and Error States */
+    .state-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .state-icon {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        color: var(--primary);
+    }
+
+    .state-title {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        color: var(--text-primary);
+    }
+
+    .state-message {
+        color: var(--text-secondary);
+        font-size: 1.1rem;
+        max-width: 600px;
+        margin-bottom: 25px;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    /* Last Update Info */
+    .last-update {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+    }
+
+    .last-update i {
+        color: var(--primary);
+    }
+
+    .update-time {
+        color: var(--primary);
+        font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+        text-align: center;
+        padding: 30px 0;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        border-top: 1px solid var(--border-color);
+        margin-top: 40px;
+    }
+
+    .footer-links {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .footer-link {
+        color: var(--primary);
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .footer-link:hover {
+        text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 2rem;
+        }
+        
+        .stats-container {
+            grid-template-columns: 1fr;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+        }
+        
+        table {
+            display: block;
+            overflow-x: auto;
+        }
+        
+        .table-title {
+            font-size: 1.3rem;
+        }
+    }
+</style>
+
+<!-- Ícones (Font Awesome) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <img src="https://i.imgur.com/FZAhV5D.png" alt="GamesWTeam Logo">
+            </div>
+            <h1>GamesWTeam</h1>
+            <div class="subtitle">Lista de Atualizações - Monitoramento de Arquivos</div>
+        </header>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-title">
+                    <i class="fas fa-file-alt"></i> Total de Arquivos
+                </div>
+                <div class="stat-value" id="totalArquivos">0</div>
+                <div class="stat-description">Arquivos listados no patch atual</div>
+                <div class="last-update" id="lastUpdateInfo">
+                    <i class="fas fa-clock"></i> Última atualização: <span class="update-time" id="lastUpdateTime">Carregando...</span>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-title">
+                    <i class="fas fa-weight-hanging"></i> Tamanho Total
+                </div>
+                <div class="stat-value" id="tamanhoTotal">0 B</div>
+                <div class="stat-description">Espaço total ocupado pelos arquivos</div>
+                <div class="last-update">
+                    <i class="fas fa-calendar-alt"></i> Data do Patch: <span class="update-time" id="patchDate">Carregando...</span>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-title">
+                    <i class="fas fa-chart-line"></i> Qualidade do Update
+                </div>
+                <div class="stat-value" id="qualidadeUpdate">N/A</div>
+                <div class="quality-indicator" id="qualidadeIndicator">
+                    <div class="quality-text">
+                        <div class="quality-status" id="qualidadeStatus">Carregando...</div>
+                        <div class="quality-message" id="qualidadeMensagem">Avaliando qualidade da atualização</div>
+                    </div>
+                </div>
+                <div class="last-update">
+                    <i class="fas fa-sync-alt"></i> Verificação automática
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <div class="table-header">
+                <div class="table-title">
+                    <i class="fas fa-list-check"></i> Arquivos do Patch
+                </div>
+            </div>
+            
+            <!-- Estado de Carregamento -->
+            <div class="state-container" id="loadingState">
+                <div class="state-icon">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <div class="state-title">Carregando lista de arquivos...</div>
+                <div class="state-message">Por favor, aguarde enquanto carregamos as informações do patch.</div>
+            </div>
+            
+            <!-- Estado de Erro/Arquivo não encontrado -->
+            <div class="state-container hidden" id="errorState">
+                <div class="state-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="state-title" id="errorTitle">Arquivo não encontrado</div>
+                <div class="state-message" id="errorMessage">O arquivo ListaPatch.txt não foi encontrado ou está vazio.</div>
+            </div>
+            
+            <!-- Tabela de Conteúdo -->
+            <div id="tableContent" class="hidden">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="40%">Arquivo</th>
+                            <th width="45%">Hash</th>
+                            <th width="15%">Tamanho</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista">
+                        <!-- Conteúdo será inserido aqui via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <footer>
+            <div>GamesWTeam &copy; <span id="currentYear">2024</span> - Sistema de Monitoramento de Atualizações</div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Documentação</a>
+                <a href="#" class="footer-link">Suporte</a>
+                <a href="#" class="footer-link">Status do Servidor</a>
+            </div>
+        </footer>
+    </div>
+
+<script>
+// Definir ano atual no footer
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+// Elementos da interface
+const totalArquivosEl = document.getElementById('totalArquivos');
+const tamanhoTotalEl = document.getElementById('tamanhoTotal');
+const qualidadeUpdateEl = document.getElementById('qualidadeUpdate');
+const qualidadeStatusEl = document.getElementById('qualidadeStatus');
+const qualidadeMensagemEl = document.getElementById('qualidadeMensagem');
+const listaEl = document.getElementById('lista');
+const loadingState = document.getElementById('loadingState');
+const errorState = document.getElementById('errorState');
+const tableContent = document.getElementById('tableContent');
+const errorTitle = document.getElementById('errorTitle');
+const errorMessage = document.getElementById('errorMessage');
+const lastUpdateTimeEl = document.getElementById('lastUpdateTime');
+const patchDateEl = document.getElementById('patchDate');
+
+// Função para formatar tamanho
+function formatarTamanho(bytes) {
+    if (bytes === 0) return '0 B';
+    
+    const unidades = ['B', 'KB', 'MB', 'GB', 'TB'];
+    let i = 0;
+    
+    while (bytes >= 1024 && i < unidades.length - 1) {
+        bytes /= 1024;
+        i++;
+    }
+    
+    return bytes.toFixed(2) + ' ' + unidades[i];
+}
+
+// Função para formatar data
+function formatarData(data) {
+    const options = {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    };
+    
+    return data.toLocaleDateString('pt-BR', options);
+}
+
+// Função para obter data de modificação do arquivo
+async function obterDataModificacaoArquivo() {
+    try {
+        // Tentamos obter a data do arquivo usando HEAD request
+        const response = await fetch('ListaPatch.txt', { method: 'HEAD' });
+        
+        if (response.ok) {
+            // Tentamos obter a data do header Last-Modified
+            const lastModified = response.headers.get('Last-Modified');
+            
+            if (lastModified) {
+                return new Date(lastModified);
+            }
+        }
+        
+        // Se não conseguir obter a data do arquivo, retorna a data atual
+        return new Date();
+    } catch (error) {
+        console.error('Erro ao obter data de modificação:', error);
+        return new Date(); // Retorna data atual em caso de erro
+    }
+}
+
+// Função para avaliar qualidade
+function avaliarQualidade(qtd) {
+    let status, mensagem, corClasse;
+    
+    if (qtd <= 100) {
+        status = 'Excelente';
+        mensagem = 'Atualização leve e totalmente saudável!';
+        corClasse = 'status-excelente';
+    }
+    else if (qtd <= 300) {
+        status = 'Regular';
+        mensagem = 'Atualização mediana, dentro do esperado.';
+        corClasse = 'status-regular';
+    }
+    else if (qtd <= 500) {
+        status = 'Atenção';
+        mensagem = 'Muitos arquivos! Considere otimizar.';
+        corClasse = 'status-atencao';
+    }
+    else if (qtd <= 800) {
+        status = 'Ruim';
+        mensagem = 'Atualização pesada demais. Risco de problemas.';
+        corClasse = 'status-ruim';
+    }
+    else {
+        status = 'Péssimo';
+        mensagem = 'Recomendado urgentemente gerar um cliente novo!';
+        corClasse = 'status-pessimo';
+    }
+    
+    return { status, mensagem, corClasse };
+}
+
+// Função para exibir erro
+function exibirErro(titulo, mensagem) {
+    loadingState.classList.add('hidden');
+    errorState.classList.remove('hidden');
+    tableContent.classList.add('hidden');
+    
+    errorTitle.textContent = titulo;
+    errorMessage.textContent = mensagem;
+}
+
+// Função principal para carregar lista
+async function carregarLista() {
+    try {
+        // Mostrar estado de carregamento
+        loadingState.classList.remove('hidden');
+        errorState.classList.add('hidden');
+        tableContent.classList.add('hidden');
+        
+        // Obter data de modificação do arquivo
+        const dataModificacao = await obterDataModificacaoArquivo();
+        const dataAtual = new Date();
+        
+        // Calcular diferença de tempo para "última atualização"
+        const diffMs = dataAtual - dataModificacao;
+        const diffMins = Math.floor(diffMs / 60000);
+        const diffHours = Math.floor(diffMs / 3600000);
+        const diffDays = Math.floor(diffMs / (3600000 * 24));
+        
+        // Formatar texto da última atualização
+        let lastUpdateText = '';
+        if (diffMins < 1) {
+            lastUpdateText = 'Agora mesmo';
+        } else if (diffMins < 60) {
+            lastUpdateText = `Há ${diffMins} minuto${diffMins > 1 ? 's' : ''}`;
+        } else if (diffHours < 24) {
+            lastUpdateText = `Há ${diffHours} hora${diffHours > 1 ? 's' : ''}`;
+        } else {
+            lastUpdateText = `Há ${diffDays} dia${diffDays > 1 ? 's' : ''}`;
+        }
+        
+        // Atualizar informações de data
+        lastUpdateTimeEl.textContent = lastUpdateText;
+        patchDateEl.textContent = formatarData(dataModificacao);
+        
+        // Tentar carregar o arquivo
+        const response = await fetch('ListaPatch.txt');
+        
+        // Verificar se o arquivo existe
+        if (!response.ok) {
+            throw new Error(`Arquivo não encontrado (${response.status})`);
+        }
+        
+        const text = await response.text();
+        
+        // Verificar se o arquivo está vazio
+        if (!text.trim()) {
+            throw new Error('Arquivo vazio');
+        }
+        
+        const linhas = text.trim().split(/\r?\n/);
+        
+        // Verificar se há dados válidos
+        if (linhas.length === 0) {
+            throw new Error('Nenhum dado válido encontrado');
+        }
+        
+        let totalArquivos = 0;
+        let tamanhoTotal = 0;
+        
+        // Limpar tabela atual
+        listaEl.innerHTML = '';
+        
+        // Processar cada linha
+        linhas.forEach(linha => {
+            const partes = linha.split(' ');
+            
+            // Verificar se a linha tem formato válido (pelo menos 3 partes)
+            if (partes.length >= 3) {
+                const nome = partes[0];
+                const hash = partes[1];
+                const tamanho = parseInt(partes[2]);
+                
+                // Verificar se o tamanho é um número válido
+                if (!isNaN(tamanho)) {
+                    tamanhoTotal += tamanho;
+                    totalArquivos++;
+                    
+                    // Adicionar linha à tabela
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td><span class="file-name">${nome}</span></td>
+                        <td><code class="file-hash">${hash}</code></td>
+                        <td><span class="file-size">${formatarTamanho(tamanho)}</span></td>
+                    `;
+                    listaEl.appendChild(tr);
+                }
+            }
+        });
+        
+        // Se nenhum arquivo válido foi encontrado
+        if (totalArquivos === 0) {
+            throw new Error('Nenhum arquivo válido encontrado no arquivo');
+        }
+        
+        // Atualizar estatísticas
+        totalArquivosEl.textContent = totalArquivos;
+        tamanhoTotalEl.textContent = formatarTamanho(tamanhoTotal);
+        
+        // Avaliar qualidade
+        const qualidade = avaliarQualidade(totalArquivos);
+        qualidadeUpdateEl.textContent = qualidade.status;
+        qualidadeStatusEl.textContent = qualidade.status;
+        qualidadeMensagemEl.textContent = qualidade.mensagem;
+        
+        // Aplicar classe de cor ao status
+        qualidadeUpdateEl.className = qualidade.corClasse;
+        qualidadeStatusEl.className = qualidade.corClasse;
+        
+        // Mostrar tabela
+        loadingState.classList.add('hidden');
+        tableContent.classList.remove('hidden');
+        
+    } catch (err) {
+        console.error('Erro ao carregar lista:', err);
+        
+        // Exibir erro apropriado
+        if (err.message.includes('não encontrado') || err.message.includes('404')) {
+            exibirErro('Arquivo não encontrado', 'O arquivo ListaPatch.txt não foi encontrado no servidor.');
+        } else if (err.message.includes('vazio')) {
+            exibirErro('Arquivo vazio', 'O arquivo ListaPatch.txt está vazio ou não contém dados.');
+        } else {
+            exibirErro('Erro ao carregar', `Ocorreu um erro: ${err.message}`);
+        }
+    }
+}
+
+// Carregar lista ao iniciar
+document.addEventListener('DOMContentLoaded', carregarLista);
+
+// Atualizar automaticamente a cada 5 minutos (300000 ms)
+setInterval(carregarLista, 300000);
+</script>
+
+</body>
+</html>
