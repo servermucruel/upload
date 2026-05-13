@@ -1,2 +1,6 @@
 Main.exe 606a11bc 11002211
 main.premium ba81fe52 2134280
+msvcp100.dll 38f12a25 421200
+msvcr100.dll db505e33 770384
+vorbisfile.dll b3544474 999424
+wzAudio.dll a0747522 212992
