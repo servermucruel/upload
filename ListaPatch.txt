@@ -1,6 +1,6 @@
 Camera.dll 4d31c115 207360
 Main.exe 606a11bc 11002211
-main.premium de9533de 2134280
+main.premium 882974a6 2134280
 msvcp100.dll 38f12a25 421200
 msvcr100.dll db505e33 770384
 PS.dll 037207ed 11878664
