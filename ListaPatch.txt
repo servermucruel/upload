@@ -1,11 +1,12 @@
 Camera.dll 4d31c115 207360
 Main.exe 606a11bc 11002211
-main.premium de220ff3 2134280
+main.premium de9533de 2134280
 msvcp100.dll 38f12a25 421200
 msvcr100.dll db505e33 770384
 PS.dll 037207ed 11878664
 vorbisfile.dll b3544474 999424
 wzAudio.dll a0747522 212992
+Data/Local/ServerList.bmd 6d7e2e17 55
 PS/License.ps a2cfcf27 361
 PS/PSGG.Splash.Blue.png 2acdd1a4 115422
 PS/PSGG.Splash.Red.png cfbe7a77 76381
